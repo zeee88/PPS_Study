@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="../static/css/main.css" type="text/css">
+	<title>사무실 배치도</title>
+</head>
+
+<body>
+	<div class="main">
+		<ul class="employeeList">
+			<h2 style="text-align: center;">사원 List</h2>
+			<!-- employeeList 불러오기 -->
+		</ul>
+		<div class="layout">
+			<h2 style="text-align: center;">사무실 자리 배치도</h2>
+			<div class="container">
+				<div class="up">
+					<div class="seat" id="1">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="2">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="3">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="4">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="5">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+				<div class="down">
+					<div class="seat" id="6">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="7">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="8">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="9">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$().ready(function () {
+			const upImgSrc = "../static/img/seatUp.png";
+			const downImgSrc = "../static/img/seatDown.png";
+
+			$('.seat .seat-up-img').attr('src', upImgSrc);
+			$('.seat .seat-down-img').attr('src', downImgSrc);
+
+			// employeeList 불러오기
+			var employeeList = ['박지해', '111', '222', '333', '444', '555', '666', '777', '888'];
+			var text = '';
+			for (var i = 0; i < employeeList.length; i++) {
+				text += "<li class='employee' draggable='true'>" + employeeList[i] + "</li>";
+			}
+			document.querySelector(".employeeList").innerHTML += text;
+
+			// 드래그 앤 드롭 이벤트 설정
+			setDragAndDrop('.seat, .employee');
+		});
+
+		let selectedElement = null;
+
+		// 자리와 사원 목록의 드래그 앤 드롭 이벤트 설정
+		function setDragAndDrop(selector) {
+			document.querySelectorAll(selector).forEach(element => {
+				// 드래그 시작
+				element.addEventListener('dragstart', function (e) {
+					selectedElement = this;
+					e.dataTransfer.setData('text/plain', null);
+				});
+
+				// 드래그 오버
+				element.addEventListener('dragover', function (e) {
+					e.preventDefault();
+				});
+
+				// 드롭
+				element.addEventListener('drop', function (e) {
+					e.preventDefault();
+					//selectedSeat은 사원 리스트
+					if (selectedElement !== this) {
+						const sourceInfo = selectedElement.querySelector('.info') ? selectedElement.querySelector('.info').innerText : selectedElement.innerText;
+						const targetInfo = this.querySelector('.info') ? this.querySelector('.info').innerText : this.innerText;
+
+						//seat 내에서 교체(비어있는 경우도 포함)
+						if (selectedElement.classList.contains('seat') && this.classList.contains('seat')) {
+							this.querySelector('.info').innerText = sourceInfo;
+							selectedElement.querySelector('.info').innerText = targetInfo;
+						}
+						// list에서 seat으로 이동
+						else if (selectedElement.classList.contains('employee') && this.classList.contains('seat')) {
+							if (this.querySelector('.info').innerText === "") { 
+								this.querySelector('.info').innerText = sourceInfo;
+								selectedElement.draggable = false;
+								selectedElement.style.backgroundColor = "gray";
+							} else {
+								this.querySelector('.info').innerText = sourceInfo;
+								selectedElement.querySelector('.employee').innerText = targetInfo;
+								selectedElement.draggable = true;
+
+							}
+						}
+						// seat에서 list로 이동  // 이건 추후에 같은 text인지 확인 후 보내기. @@@@@@@수정해야함.
+						else if (selectedElement.classList.contains('seat') && this.classList.contains('employee')) {
+							const employeeElements = document.querySelectorAll('.employee');
+							if (selectedElement.querySelector('.info').innerText != this.querySelector('.employee').innerText) {
+								return;
+							}
+							employeeElements.forEach(employee => {
+								if (employee.innerText === sourceInfo) {
+									employee.draggable = true;
+									employee.style.backgroundColor = "#ddd";
+								}
+							});
+							this.innerText = sourceInfo;
+							selectedElement.querySelector('.info').innerText = "";
+						}
+					}
+				});
+			});
+		}
+
+
+		// 서버로 수정된 자리배치도 데이터 보내기
+
+		// function sendPositionToServer(seat1, seat2) {
+		// 	fetch('/update-seat-position', {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify({
+		// 			seat1: seat1,
+		// 			seat2: seat2
+		// 		})
+		// 	})
+		// 		.then(response => response.json())
+		// 		.then(data => {
+		// 			console.log('Success:', data);
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error('Error:', error);
+		// 		});
+		// }
+	</script>
+</body>
+
+</html>
