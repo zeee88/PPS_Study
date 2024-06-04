@@ -13,20 +13,46 @@
 	<div class="main">
 		<ul class="employeeList">
 			<h2 style="text-align: center;">사원 List</h2>
-			<!-- employeeList 불러오기 -->
+			<!-- <button id="searchButton" onclick="fetchData()">조회하기</button> -->
+			<div class="employeeListDetail">
+				<!-- employeeList 불러오기 -->
+			</div>
+			<button id="saveButton" onclick="save()">저장</button>
 		</ul>
 		<div class="layout">
-			<h2 style="text-align: center;">사무실 자리 배치도</h2>
-			<div class="container">
-				<div class="up">
+			<!-- <h2 style="text-align: center; margin-top: 0em; margin-bottom: 1.5em;">사무실 자리 배치도</h2> -->
+			<div class="leftSide">
+				<img src="../static/img/남자 화장실.png">
+			</div>
+			<div class="container-single">
+				<div class="down">
+					<div class="seat" id="탕비실">
+						<div style="text-align: center;">탕비실</div>
+					</div>
+					<div class="seat" id="스낵바">
+						<div style="text-align: center;">스낵바</div>
+					</div>
+					<div class="seat" id="작업대">
+						<div style="text-align: center;">작업대</div>
+					</div>
 					<div class="seat" id="1">
-						<img src="" class="seat-up-img">
+						<img src="" class="seat-down-img">
 						<div class="info" draggable="true"></div>
 					</div>
 					<div class="seat" id="2">
-						<img src="" class="seat-up-img">
+						<img src="" class="seat-down-img">
 						<div class="info" draggable="true"></div>
 					</div>
+				</div>
+			</div>
+			<div class="container-terrace">
+				<div style="text-align: center;">테라스</div>
+			</div>
+			<div class="leftSide">
+				<img src="../static/img/여자 화장실.png">
+			</div>
+			<div class="container">
+				<div class="up">
 					<div class="seat" id="3">
 						<img src="" class="seat-up-img">
 						<div class="info" draggable="true"></div>
@@ -39,16 +65,16 @@
 						<img src="" class="seat-up-img">
 						<div class="info" draggable="true"></div>
 					</div>
-				</div>
-				<div class="down">
 					<div class="seat" id="6">
-						<img src="" class="seat-down-img">
+						<img src="" class="seat-up-img">
 						<div class="info" draggable="true"></div>
 					</div>
 					<div class="seat" id="7">
-						<img src="" class="seat-down-img">
+						<img src="" class="seat-up-img">
 						<div class="info" draggable="true"></div>
 					</div>
+				</div>
+				<div class="down">
 					<div class="seat" id="8">
 						<img src="" class="seat-down-img">
 						<div class="info" draggable="true"></div>
@@ -57,11 +83,168 @@
 						<img src="" class="seat-down-img">
 						<div class="info" draggable="true"></div>
 					</div>
+					<div class="seat" id="10">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="11">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+			</div>
+			<div class="leftSide-large">
+				<div>엘리베이터</div>
+			</div>
+			<div class="container">
+				<div class="up">
+					<div class="seat" id="12">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="13">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="14">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="15">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="16">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+				<div class="down">
+					<div class="seat" id="17">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="18">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="19">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="20">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+			</div>
+			<div class="leftSide-large">
+				<div>출입공간</div>
+			</div>
+			<div class="container">
+				<div class="up">
+					<div class="seat" id="21">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="기둥">
+						<div style="text-align: center;">기둥</div>
+					</div>
+					<div class="seat" id="22">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="23">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="24">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+				<div class="down">
+					<div class="seat" id="25">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="26">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="27">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="28">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="up">
+					<div class="seat" id="29">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="30">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="31">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="32">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="33">
+						<img src="" class="seat-up-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+				<div class="down">
+					<div class="seat" id="프린터1">
+						<div style="text-align: center;">프린터</div>
+					</div>
+					<div class="seat" id="프린터2">
+						<div style="text-align: center;">프린터</div>
+					</div>
+					<div class="seat" id="34">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+					<div class="seat" id="35">
+						<img src="" class="seat-down-img">
+						<div class="info" draggable="true"></div>
+					</div>
+				</div>
+			</div>
+			<div class="container-room">
+				<div class="server-room">
+					<div style="text-align: center;">창고/서버실</div>
+				</div>
+				<div class="large-room" id="대회의실">
+					<div style="text-align: center;">대회의실</div>
+				</div>
+				<div class="small-room" id="소희의실">
+					<div style="text-align: center;">소회의실</div>
+				</div>
+				<div class="room" id="36">
+					<div style="text-align: center;">room</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 사원 상세 정보 툴팁 -->
+	<div id="employeeTooltip" class="tooltip" style="display: none;">
+		<!-- 사원 상세 정보 여기에 표시 -->
+	</div>
 	<script type="text/javascript">
+		let employeeList;
+
 		$().ready(function () {
 			const upImgSrc = "../static/img/seatUp.png";
 			const downImgSrc = "../static/img/seatDown.png";
@@ -69,102 +252,117 @@
 			$('.seat .seat-up-img').attr('src', upImgSrc);
 			$('.seat .seat-down-img').attr('src', downImgSrc);
 
-			// employeeList 불러오기
-			var employeeList = ['박지해', '111', '222', '333', '444', '555', '666', '777', '888'];
-			var text = '';
-			for (var i = 0; i < employeeList.length; i++) {
-				text += "<li class='employee' draggable='true'>" + employeeList[i] + "</li>";
-			}
-			document.querySelector(".employeeList").innerHTML += text;
+			$.ajax({
+				url: 'http://localhost:1004/office/list',
+				type: 'GET',
+				success: function (data) {
+					employeeList = $('.employeeListDetail');
+					let html = '';
+
+					data.forEach(function (employee) {
+						html += `<li class='employee' draggable='true'>${employee.empName}</li>`;
+					});
+					employeeList.append(html);
+				},
+				error: function (error) {
+					console.log('사원 목록 조회 실패' + error);
+				},
+
+			});
 
 			// 드래그 앤 드롭 이벤트 설정
-			setDragAndDrop('.seat, .employee');
+			setDragAndDrop();
+
+			// 좌석 클릭 이벤트(사원 상세정보)
+			// $('.info').on('click', function () {
+			// 	const employeeName = $(this).find('.info').text();
+			// 	if (employeeName) {
+			// 		const employee = employees.find(emp => emp.empName === employeeName);
+			// 		if (employee) {
+			// 			showEmployeeTooltip(employee, e.pageX, e.pageY);
+			// 		}
+			// 	}
+			// });
+
+			// 클릭 외부 이벤트 추가 - 툴팁 닫기
+			// $(document).on('click', function (e) {
+			// 	if (!$(e.target).closest('.seat, #employeeTooltip').length) {
+			// 		$('#employeeTooltip').hide();
+			// 	}
+			// });
+
 		});
 
 		let selectedElement = null;
 
 		// 자리와 사원 목록의 드래그 앤 드롭 이벤트 설정
-		function setDragAndDrop(selector) {
-			document.querySelectorAll(selector).forEach(element => {
-				// 드래그 시작
-				element.addEventListener('dragstart', function (e) {
-					selectedElement = this;
-					e.dataTransfer.setData('text/plain', null);
-				});
+		function setDragAndDrop() {
+			// 드래그 시작
+			$(document).on('dragstart', '.seat, .employee', function (e) {
+				selectedElement = this;
+				e.originalEvent.dataTransfer.setData('text/plain', null);
+			});
 
-				// 드래그 오버
-				element.addEventListener('dragover', function (e) {
-					e.preventDefault();
-				});
+			// 드래그 오버
+			$(document).on('dragover', '.seat, .employee', function (e) {
+				e.preventDefault();
+			});
 
-				// 드롭
-				element.addEventListener('drop', function (e) {
-					e.preventDefault();
-					//selectedSeat은 사원 리스트
-					if (selectedElement !== this) {
-						const sourceInfo = selectedElement.querySelector('.info') ? selectedElement.querySelector('.info').innerText : selectedElement.innerText;
-						const targetInfo = this.querySelector('.info') ? this.querySelector('.info').innerText : this.innerText;
+			// 드롭
+			$(document).on('drop', '.seat, .employee', function (e) {
+				e.preventDefault();
+				if (selectedElement !== this) {
+					const sourceInfo = $(selectedElement).find('.info').length ? $(selectedElement).find('.info').text() : $(selectedElement).text();
+					const targetInfo = $(this).find('.info').length ? $(this).find('.info').text() : $(this).text();
 
-						//seat 내에서 교체(비어있는 경우도 포함)
-						if (selectedElement.classList.contains('seat') && this.classList.contains('seat')) {
-							this.querySelector('.info').innerText = sourceInfo;
-							selectedElement.querySelector('.info').innerText = targetInfo;
-						}
-						// list에서 seat으로 이동
-						else if (selectedElement.classList.contains('employee') && this.classList.contains('seat')) {
-							if (this.querySelector('.info').innerText === "") { 
-								this.querySelector('.info').innerText = sourceInfo;
-								selectedElement.draggable = false;
-								selectedElement.style.backgroundColor = "gray";
-							} else {
-								this.querySelector('.info').innerText = sourceInfo;
-								selectedElement.querySelector('.employee').innerText = targetInfo;
-								selectedElement.draggable = true;
+					// seat 내에서 교체(비어있는 경우도 포함)
+					if ($(selectedElement).hasClass('seat') && $(this).hasClass('seat')) {
+						$(this).find('.info').text(sourceInfo);
+						$(selectedElement).find('.info').text(targetInfo);
+					}
+					// list에서 seat으로 이동
+					else if ($(selectedElement).hasClass('employee') && $(this).hasClass('seat')) {
+						if ($(this).find('.info').text() === "") {
+							$(this).find('.info').text(sourceInfo);
+							$(selectedElement).attr('draggable', false).css('background-color', 'gray');
+						} else {
+							const oldInfo = $(this).find('.info').text();
+							$(this).find('.info').text(sourceInfo);
+							$(selectedElement).attr('draggable', false).css('background-color', 'gray');
 
-							}
-						}
-						// seat에서 list로 이동  // 이건 추후에 같은 text인지 확인 후 보내기. @@@@@@@수정해야함.
-						else if (selectedElement.classList.contains('seat') && this.classList.contains('employee')) {
-							const employeeElements = document.querySelectorAll('.employee');
-							if (selectedElement.querySelector('.info').innerText != this.querySelector('.employee').innerText) {
-								return;
-							}
-							employeeElements.forEach(employee => {
-								if (employee.innerText === sourceInfo) {
-									employee.draggable = true;
-									employee.style.backgroundColor = "#ddd";
+							$('.employee').each(function () {
+								if ($(this).text() === oldInfo) {
+									$(this).attr('draggable', true).css('background-color', '#ddd');
 								}
 							});
-							this.innerText = sourceInfo;
-							selectedElement.querySelector('.info').innerText = "";
 						}
 					}
-				});
+					// seat에서 list로 이동
+					else if ($(selectedElement).hasClass('seat') && $(this).hasClass('employee')) {
+						$('.employee').each(function () {
+							if ($(this).text() === sourceInfo) {
+								$(this).attr('draggable', true).css('background-color', '#ddd');
+							}
+						});
+						$(selectedElement).find('.info').text("");
+					}
+				}
 			});
 		}
 
-
-		// 서버로 수정된 자리배치도 데이터 보내기
-
-		// function sendPositionToServer(seat1, seat2) {
-		// 	fetch('/update-seat-position', {
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify({
-		// 			seat1: seat1,
-		// 			seat2: seat2
-		// 		})
-		// 	})
-		// 		.then(response => response.json())
-		// 		.then(data => {
-		// 			console.log('Success:', data);
-		// 		})
-		// 		.catch((error) => {
-		// 			console.error('Error:', error);
-		// 		});
+		// 사원 상세 정보 표시 함수
+		// function showEmployeeTooltip(employee, x, y) {
+		// 	const tooltip = $('#employeeTooltip');
+		// 	let html = `
+        //       <p>이름: ${employee.empName}</p>
+        //       <p>직책: ${employee.position}</p>
+        //       <p>부서: ${employee.department}</p>`;
+		// 	tooltip.html(html);
+		// 	tooltip.css({ top: y + 10, left: x + 10 });
+		// 	tooltip.show();
 		// }
+
+
 	</script>
 </body>
 
