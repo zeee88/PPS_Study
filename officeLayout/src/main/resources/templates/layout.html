@@ -20,9 +20,16 @@
 			<button id="saveButton" onclick="save()">저장</button>
 		</ul>
 		<div class="layout">
-			<!-- <h2 style="text-align: center; margin-top: 0em; margin-bottom: 1.5em;">사무실 자리 배치도</h2> -->
 			<div class="leftSide">
 				<img src="../static/img/남자 화장실.png">
+			</div>
+			<div class="leftSide-sink">
+				<img src="../static/img/싱크대.png">
+				<p>싱크대</p>
+			</div>
+			<div class="leftSide-ref">
+				<img src="../static/img/냉장고.png">
+				<p>냉장고</p>
 			</div>
 			<div class="container-single">
 				<div class="down">
@@ -141,7 +148,7 @@
 			<div class="leftSide-large">
 				<div>출입공간</div>
 			</div>
-			<div class="container">
+			<div class="container2">
 				<div class="up">
 					<div class="seat" id="21">
 						<img src="" class="seat-up-img">
@@ -182,7 +189,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="container2">
 				<div class="up">
 					<div class="seat" id="29">
 						<img src="" class="seat-up-img">
@@ -224,24 +231,35 @@
 			</div>
 			<div class="container-room">
 				<div class="server-room">
-					<div style="text-align: center;">창고/서버실</div>
+					<div style="text-align: center;">
+						<p>창고/서버실 & 중회의실</p>
+						<img src="../static/img/회의실.png">
+					</div>
 				</div>
 				<div class="large-room" id="대회의실">
-					<div style="text-align: center;">대회의실</div>
+					<div style="text-align: center;">
+						<p>대회의실</p>
+						<img src="../static/img/회의실.png">
+						<img src="../static/img/회의실.png">
+						<img src="../static/img/회의실.png">
+						<img src="../static/img/회의실.png">
+					</div>
 				</div>
 				<div class="small-room" id="소희의실">
-					<div style="text-align: center;">소회의실</div>
+					<div style="text-align: center;">
+						<p>소회의실</p>
+						<img src="../static/img/소회의실.png">
+					</div>
 				</div>
 				<div class="room" id="36">
-					<div style="text-align: center;">room</div>
+					<div style="text-align: center;">
+						<p>room</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 사원 상세 정보 툴팁 -->
-	<div id="employeeTooltip" class="tooltip" style="display: none;">
-		<!-- 사원 상세 정보 여기에 표시 -->
-	</div>
+
 	<script type="text/javascript">
 		let employeeList;
 
@@ -274,29 +292,69 @@
 			setDragAndDrop();
 
 			// 좌석 클릭 이벤트(사원 상세정보)
-			// $('.info').on('click', function () {
-			// 	const employeeName = $(this).find('.info').text();
-			// 	if (employeeName) {
-			// 		const employee = employees.find(emp => emp.empName === employeeName);
-			// 		if (employee) {
-			// 			showEmployeeTooltip(employee, e.pageX, e.pageY);
-			// 		}
-			// 	}
-			// });
-
-			// 클릭 외부 이벤트 추가 - 툴팁 닫기
-			// $(document).on('click', function (e) {
-			// 	if (!$(e.target).closest('.seat, #employeeTooltip').length) {
-			// 		$('#employeeTooltip').hide();
-			// 	}
-			// });
+			tooltip();
 
 		});
 
-		let selectedElement = null;
+
+		// 사원 상세 정보 표시 함수
+		// function showEmployeeTooltip(employee, x, y) {
+		// 	const tooltip = $('#employeeTooltip');
+		// 	let html = `
+		//       <p>이름: ${employee.empName}</p>
+		//       <p>직책: ${employee.position}</p>
+		//       <p>부서: ${employee.department}</p>`;
+		// 	tooltip.html(html);
+		// 	tooltip.css({ top: y + 10, left: x + 10 });
+		// 	tooltip.show();
+		// }
+
+
+
+		// 좌석 클릭 이벤트(사원 상세정보)
+		function tooltip() {
+			const tooltip = $('<div class="tooltip" style="display: none;"></div>').appendTo('body');
+
+			let tooltipVisible = false;
+
+			$('.seat').on('click', function (e) {
+				const imgElement = $(this).children('img');
+				const imgOffset = imgElement.offset();
+				const imgWidth = imgElement.width();
+				const imgHeight = imgElement.height();
+				const isUp = $(this).closest('.seat').parent().hasClass('up');
+
+				if (!tooltipVisible || !$(this).is(tooltip.data('target'))) {
+					const tooltipText = $(this).closest('.info').attr('id') + '에 대한 설명'; //@@@@@@@@@@@@@@@툴팁 내용
+					tooltip.text(tooltipText).css({
+						display: 'block',
+						left: imgOffset.left + imgWidth / 2 - tooltip.outerWidth() / 2,
+						top: isUp ?
+							(imgOffset.top + imgHeight / 2) - 60 - tooltip.outerHeight() / 2 :
+							(imgOffset.top + imgHeight / 2) + 70 - tooltip.outerHeight() / 2
+					}).data('target', $(this));
+					tooltipVisible = true;
+				} else {
+					tooltip.hide();
+					tooltipVisible = false;
+				}
+			});
+
+			$(document).on('click', function (e) {
+				if (tooltipVisible && !$(e.target).closest('.seat .info').length) {
+					tooltip.hide();
+					tooltipVisible = false;
+				}
+			});
+		}
+
+
 
 		// 자리와 사원 목록의 드래그 앤 드롭 이벤트 설정
 		function setDragAndDrop() {
+
+			let selectedElement = null;
+
 			// 드래그 시작
 			$(document).on('dragstart', '.seat, .employee', function (e) {
 				selectedElement = this;
@@ -349,20 +407,6 @@
 				}
 			});
 		}
-
-		// 사원 상세 정보 표시 함수
-		// function showEmployeeTooltip(employee, x, y) {
-		// 	const tooltip = $('#employeeTooltip');
-		// 	let html = `
-        //       <p>이름: ${employee.empName}</p>
-        //       <p>직책: ${employee.position}</p>
-        //       <p>부서: ${employee.department}</p>`;
-		// 	tooltip.html(html);
-		// 	tooltip.css({ top: y + 10, left: x + 10 });
-		// 	tooltip.show();
-		// }
-
-
 	</script>
 </body>
 

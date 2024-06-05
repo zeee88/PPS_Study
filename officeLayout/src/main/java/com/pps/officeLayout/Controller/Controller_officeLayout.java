@@ -3,6 +3,7 @@ package com.pps.officeLayout.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +15,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Controller_officeLayout {
 
+
 	// 사원 리스트 조회하기
 	@GetMapping("/list")
-	public List<EmployeeBody> getEmployeeList() {
+	public List<EmployeeBody> getEmployeeList(Model model) {
 		List<EmployeeBody> list = new ArrayList<>();
 
 		for(int i = 1; i <= 20; i++){

@@ -1,7 +1,29 @@
-- 이미지 저작권
+여자화장실
 <a href="https://kr.freepik.com/icon/toilet_7446071#fromView=search&page=1&position=51&uuid=d48cd14e-b0d7-457f-93e6-d280910df08d">bearicons 제작 아이콘</a>
+
+남자화장실
 <a href="https://kr.freepik.com/icon/sign_7445978#fromView=resource_detail&position=48">bearicons 제작 아이콘</a>
+
+책상
 <a href="https://kr.freepik.com/icon/desk_9983242#fromView=resource_detail&position=27">Leremy 제작 아이콘</a>
 
 회의실
-https://kr.freepik.com/icon/meeting_7268570#fromView=search&page=3&position=83&uuid=761b6310-d6ab-49b1-babf-d01288cb60b0
+<a href="https://kr.freepik.com/icon/meeting_7268570#fromView=search&page=3&position=83&uuid=761b6310-d6ab-49b1-babf-d01288cb60b0">rukanicon 제작 아이콘</a>
+
+냉장고
+<a href="https://kr.freepik.com/icon/kitchen_10893463#fromView=search&page=1&position=83&uuid=9d085e7e-b2c5-4159-8c9c-45e9a640d71a">Boris farias 제작 아이콘</a>
+
+싱크대
+<a href="https://kr.freepik.com/icon/sink_3822622#fromView=search&page=1&position=86&uuid=3dcd5f7c-d282-4ed7-8d6e-27d041449af9">Smashicons 제작 아이콘</a>
+
+작업대
+https://kr.freepik.com/icon/desk_948968
+
+책상 평면
+https://kr.freepik.com/icon/window-maximize_9272862
+
+대회의실/중회의실
+<a href="https://kr.freepik.com/icon/meeting_14351883#fromView=search&page=4&position=38&uuid=3d9d860a-ba3d-4082-88de-9ecafb15e08c">Puckung 제작 아이콘</a>
+
+소회의실
+<a href="https://kr.freepik.com/icon/meeting_14351870#fromView=resource_detail&position=4">Puckung 제작 아이콘</a>
